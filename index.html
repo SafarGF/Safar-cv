@@ -1,0 +1,972 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Safar Guliyev – Spa & Wellness Specialist</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Jost:wght@300;400;500&display=swap"
+        rel="stylesheet">
+    <style>
+        /* ── Reset & Base ─────────────────────────────────────────────────────── */
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        :root {
+            --brown: #8B7355;
+            --brown-dark: #3D2E1E;
+            --brown-mid: #5C4A32;
+            --brown-light: #4A3825;
+            --sand: #F9F6F1;
+            --sidebar: #F2EDE5;
+            --border: #D4C9B8;
+            --pill-bg: #E8E0D4;
+            --photo-bg: #E0D8CC;
+            --white: #ffffff;
+            --serif: 'Cormorant Garamond', Georgia, serif;
+            --sans: 'Jost', sans-serif;
+        }
+
+        body {
+            font-family: var(--sans);
+            background: #EDE8E0;
+            min-height: 100vh;
+            display: block;
+            padding: 0;
+            max-width: 100%;
+            overflow-x: hidden;
+        }
+
+        /* @media (max-width: 830px) {
+            body {
+                padding: 10px;
+                background: #fff;
+            }
+
+            .cv {
+                width: 100% !important;
+                transform: none !important;
+                transform-origin: initial !important;
+                box-shadow: none;
+            } */
+
+        html,
+        body {
+            overflow-x: auto;
+        }
+
+        /* ── Page (A4 proportions) ────────────────────────────────────────────── */
+        .cv {
+            width: 794px;
+            margin: 0 auto;
+            background: var(--white);
+            border-radius: 2px;
+            overflow: hidden;
+            box-shadow: 0 8px 40px rgba(60, 40, 20, 0.18);
+            position: relative;
+        }
+
+        /* Top + bottom accent bars */
+        .cv::before,
+        .cv::after {
+            content: '';
+            display: block;
+            height: 5px;
+            background: var(--brown);
+        }
+
+        /* ── HEADER ───────────────────────────────────────────────────────────── */
+        .header {
+            display: flex;
+            background: var(--sand);
+            border-bottom: 1px solid var(--border);
+        }
+
+        /* Photo column */
+        .photo-col {
+            width: 148px;
+            flex-shrink: 0;
+            background: var(--photo-bg);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 22px 14px;
+            gap: 10px;
+            border-right: 1px solid var(--border);
+        }
+
+        .photo-circle {
+            width: 110px;
+            height: 110px;
+            border-radius: 50%;
+            border: 2px solid var(--brown);
+            background: #CFC5B5;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+
+        /* If user adds a real photo: <img src="your-photo.jpg"> inside .photo-circle */
+        .photo-circle img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: 30% 15%;
+            border-radius: 50%;
+        }
+
+        .photo-circle svg {
+            opacity: 0.45;
+        }
+
+        .photo-label {
+            font-size: 8px;
+            color: var(--brown);
+            letter-spacing: 0.5px;
+            text-align: center;
+        }
+
+        .meta-item {
+            text-align: center;
+        }
+
+        .meta-item .val {
+            font-size: 9.5px;
+            font-weight: 500;
+            color: var(--brown-mid);
+            display: block;
+        }
+
+        .meta-item .lbl {
+            font-size: 7.5px;
+            color: var(--brown);
+            display: block;
+            margin-top: 1px;
+        }
+
+        /* Name column */
+        .name-col {
+            flex: 1;
+            padding: 24px 26px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: 0;
+        }
+
+        .cv-label {
+            font-family: var(--sans);
+            font-size: 8px;
+            letter-spacing: 3px;
+            color: var(--brown);
+            text-transform: uppercase;
+            margin-bottom: 6px;
+        }
+
+        .name {
+            font-family: var(--serif);
+            font-size: 38px;
+            font-weight: 500;
+            color: var(--brown-dark);
+            line-height: 1;
+            letter-spacing: 0.5px;
+            margin-bottom: 5px;
+        }
+
+        .job-title {
+            font-family: var(--sans);
+            font-size: 10px;
+            font-weight: 400;
+            letter-spacing: 2.5px;
+            color: var(--brown);
+            text-transform: uppercase;
+            margin-bottom: 18px;
+        }
+
+        .contacts {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 7px 22px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            text-decoration: none;
+            color: var(--brown-mid);
+            font-size: 10px;
+            transition: color 0.2s;
+        }
+
+        .contact-item:hover {
+            color: var(--brown-dark);
+        }
+
+        .contact-item .dot {
+            width: 5px;
+            height: 5px;
+            border-radius: 50%;
+            background: var(--brown);
+            flex-shrink: 0;
+            transition: transform 0.2s;
+        }
+
+        .contact-item:hover .dot {
+            transform: scale(1.4);
+        }
+
+        /* ── BODY LAYOUT ──────────────────────────────────────────────────────── */
+        .body {
+            display: flex;
+            min-height: 900px;
+        }
+
+        /* ── SIDEBAR ──────────────────────────────────────────────────────────── */
+        .sidebar {
+            width: 210px;
+            flex-shrink: 0;
+            background: var(--sidebar);
+            padding: 22px 16px;
+            border-right: 1px solid var(--border);
+        }
+
+        /* ── MAIN ─────────────────────────────────────────────────────────────── */
+        .main {
+            flex: 1;
+            padding: 22px 22px;
+        }
+
+        /* ── Section titles ───────────────────────────────────────────────────── */
+        .section-title {
+            font-family: var(--sans);
+            font-size: 8px;
+            font-weight: 500;
+            letter-spacing: 2.5px;
+            color: var(--brown);
+            text-transform: uppercase;
+            padding-bottom: 5px;
+            border-bottom: 1px solid var(--border);
+            margin-bottom: 10px;
+        }
+
+        .section {
+            margin-bottom: 18px;
+        }
+
+        /* ── Profile text ─────────────────────────────────────────────────────── */
+        .profile-text {
+            font-size: 10px;
+            color: var(--brown-light);
+            line-height: 1.75;
+        }
+
+        /* ── Bullet list ──────────────────────────────────────────────────────── */
+        .bullet-list {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .bullet-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 7px;
+            font-size: 10px;
+            color: var(--brown-light);
+            line-height: 1.5;
+        }
+
+        .bullet-item .dot {
+            width: 4px;
+            height: 4px;
+            border-radius: 50%;
+            background: var(--brown);
+            flex-shrink: 0;
+            margin-top: 4px;
+        }
+
+        /* ── Education ────────────────────────────────────────────────────────── */
+        .edu-item {
+            margin-bottom: 10px;
+        }
+
+        .edu-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .edu-title {
+            font-size: 10px;
+            font-weight: 500;
+            color: var(--brown-dark);
+        }
+
+        .edu-inst {
+            font-size: 9px;
+            color: var(--brown);
+            margin-top: 1px;
+        }
+
+        .edu-year {
+            font-size: 8.5px;
+            color: #7A6550;
+            margin-top: 1px;
+        }
+
+        /* ── Certificates ─────────────────────────────────────────────────────── */
+        .cert-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            font-size: 9px;
+            color: var(--brown-light);
+            margin-bottom: 3px;
+        }
+
+        .cert-year {
+            color: var(--brown);
+            flex-shrink: 0;
+            margin-left: 6px;
+        }
+
+        /* ── Language pills ───────────────────────────────────────────────────── */
+        .lang-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 6px;
+            font-size: 10px;
+            color: var(--brown-light);
+        }
+
+        .pill {
+            font-size: 8px;
+            color: var(--brown);
+            background: var(--pill-bg);
+            padding: 2px 9px;
+            border-radius: 20px;
+        }
+
+        /* ── Stats boxes ──────────────────────────────────────────────────────── */
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 8px;
+            margin-bottom: 18px;
+        }
+
+        .stat-box {
+            background: var(--sand);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 10px 8px;
+            text-align: center;
+        }
+
+        .stat-val {
+            font-family: var(--serif);
+            font-size: 22px;
+            font-weight: 500;
+            color: var(--brown);
+            display: block;
+            line-height: 1;
+            margin-bottom: 4px;
+        }
+
+        .stat-lbl {
+            font-size: 8px;
+            color: var(--brown-mid);
+            line-height: 1.3;
+        }
+
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(60, 40, 20, 0.45);
+            z-index: 100;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .modal-overlay.active {
+            display: flex;
+        }
+
+        .modal {
+            background: #ffffff;
+            border-radius: 10px;
+            padding: 28px 24px;
+            max-width: 360px;
+            width: 100%;
+            max-height: 80vh;
+            overflow-y: auto;
+            position: relative;
+            box-shadow: 0 16px 48px rgba(60, 40, 20, 0.25);
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 12px;
+            right: 16px;
+            background: none;
+            border: none;
+            font-size: 20px;
+            color: #8B7355;
+            cursor: pointer;
+        }
+
+        .modal-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 22px;
+            color: #3D2E1E;
+            margin-bottom: 16px;
+        }
+
+        .modal-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+            border-bottom: 1px solid #D4C9B8;
+            font-size: 11px;
+            color: #4A3825;
+        }
+
+        .modal-item:last-child {
+            border-bottom: none;
+        }
+
+        .modal-item-name {
+            font-weight: 500;
+            color: #3D2E1E;
+        }
+
+        .modal-item-detail {
+            color: #8B7355;
+            font-size: 10px;
+        }
+
+        .stat-box {
+            cursor: pointer;
+        }
+
+        .stat-box:hover {
+            background: #EDE8E0;
+        }
+
+        /* ── Job entries ──────────────────────────────────────────────────────── */
+        .job {
+            margin-bottom: 13px;
+        }
+
+        .job-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 2px;
+        }
+
+        .job-title-text {
+            font-size: 11px;
+            font-weight: 500;
+            color: var(--brown-dark);
+        }
+
+        .date-pill {
+            font-size: 8px;
+            color: var(--brown);
+            background: var(--sidebar);
+            padding: 2px 9px;
+            border-radius: 20px;
+            flex-shrink: 0;
+            margin-left: 8px;
+            margin-top: 1px;
+        }
+
+        .job-company {
+            font-size: 9.5px;
+            color: var(--brown);
+            margin-bottom: 5px;
+        }
+
+        .job-bullets {
+            display: flex;
+            flex-direction: column;
+            gap: 3px;
+        }
+
+        .job-bullet {
+            display: flex;
+            gap: 6px;
+            font-size: 9.5px;
+            color: var(--brown-light);
+            line-height: 1.55;
+        }
+
+        .job-bullet .dash {
+            color: var(--brown);
+            flex-shrink: 0;
+        }
+
+        /* ── Reference ────────────────────────────────────────────────────────── */
+        .reference {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .ref-name {
+            font-size: 10px;
+            font-weight: 500;
+            color: var(--brown-dark);
+        }
+
+        .ref-role {
+            font-size: 9px;
+            color: var(--brown);
+            margin-top: 2px;
+        }
+
+        .ref-email {
+            font-size: 9px;
+            color: var(--brown-mid);
+            text-decoration: none;
+        }
+
+        .ref-email:hover {
+            color: var(--brown-dark);
+        }
+
+        /* ── Print styles ─────────────────────────────────────────────────────── */
+        @media print {
+            body {
+                background: none;
+                padding: 0;
+            }
+
+            .cv {
+                box-shadow: none;
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="cv">
+
+        <!-- ── HEADER ─────────────────────────────────────────────────────────── -->
+        <div class="header">
+
+            <div class="photo-col">
+                <div class="photo-circle">
+                    <!-- TO ADD YOUR PHOTO: replace the SVG below with:-->
+                    <img src="SG.png" alt="Safar Guliyev">
+                    <!-- <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+                    <circle cx="20" cy="15" r="9" fill="#8B7355" />
+                    <path d="M4 38c0-8.837 7.163-16 16-16s16 7.163 16 16" fill="#8B7355" />
+                    </svg> -->
+                </div>
+                <!-- <span class="photo-label">Your photo here</span> -->
+
+                <div class="meta-item">
+                    <span class="val">Azerbaijani</span>
+                    <span class="lbl">Nationality</span>
+                </div>
+                <div class="meta-item">
+                    <span class="val">23 / 06 / 1992</span>
+                    <span class="lbl">Date of birth</span>
+                </div>
+            </div>
+
+            <div class="name-col">
+                <p class="cv-label">Curriculum Vitae</p>
+                <h1 class="name">Safar Guliyev</h1>
+                <p class="job-title">Spa &amp; Wellness Specialist</p>
+
+                <div class="contacts">
+                    <!-- WhatsApp link — clicking opens WhatsApp chat -->
+                    <a class="contact-item" href="https://wa.me/994554949307" target="_blank" rel="noopener">
+                        <span class="dot"></span>+994 55 494 9307
+                    </a>
+
+                    <a class="contact-item" href="mailto:safarquliyev@gmail.com"><span
+                            class="dot"></span>safarquliyev@gmail.com</a>
+
+
+                    <a class="contact-item" href="https://www.linkedin.com/in/safar-guliyev-b6343b78/" target="_blank"
+                        rel="noopener">
+                        <span class="dot"></span>linkedin.com/in/safar-guliyev
+                    </a>
+
+                    <a class="contact-item" href="#">
+                        <span class="dot"></span>Riyadh, Saudi Arabia
+                    </a>
+                </div>
+            </div>
+
+        </div><!-- /header -->
+
+        <!-- ── BODY ───────────────────────────────────────────────────────────── -->
+        <div class="body">
+
+            <!-- ── SIDEBAR ──────────────────────────────────────────────────────── -->
+            <aside class="sidebar">
+
+                <!-- Profile -->
+                <div class="section">
+                    <h2 class="section-title">Profile</h2>
+                    <p class="profile-text">
+                        Dedicated spa professional with 10+ years of experience across luxury 5-star properties in
+                        Europe, the Gulf, and the Levant. A certified Spa Specialist holding prestigious CIDESCO &
+                        CIBTAC qualifications, specializing in operational excellence, high-end guest relations, and
+                        team leadership within elite wellness environments.
+                    </p>
+                </div>
+
+                <!-- Expertise -->
+                <div class="section">
+                    <h2 class="section-title">Expertise</h2>
+                    <ul class="bullet-list">
+                        <li class="bullet-item"><span class="dot"></span>Spa Supervision &amp; Operations</li>
+                        <li class="bullet-item"><span class="dot"></span>Team Training &amp; Scheduling</li>
+                        <li class="bullet-item"><span class="dot"></span>Retail &amp; Sales Targets</li>
+                        <li class="bullet-item"><span class="dot"></span>Guest Relations &amp; Care</li>
+                        <li class="bullet-item"><span class="dot"></span>Budget &amp; Stock Management</li>
+                        <li class="bullet-item"><span class="dot"></span>Advanced Body Tech Treatments</li>
+                        <li class="bullet-item"><span class="dot"></span>MS Office · Micros · Materials Control</li>
+                    </ul>
+                </div>
+
+                <!-- Education -->
+                <div class="section">
+                    <h2 class="section-title">Education</h2>
+                    <div class="edu-item">
+                        <div class="edu-title">CIDESCO &amp; CIBTAC</div>
+                        <div class="edu-inst">Spa Management</div>
+                        <div class="edu-year">2024 – 2025</div>
+                    </div>
+                    <div class="edu-item">
+                        <div class="edu-title">BSc Tourism &amp; Hotel Management</div>
+                        <div class="edu-inst">Baku State University</div>
+                        <div class="edu-year">2011 – 2016</div>
+                    </div>
+                    <div class="edu-item">
+                        <div class="edu-title">Accounting &amp; IT</div>
+                        <div class="edu-inst">Baku Vocational Lyceum</div>
+                        <div class="edu-year">2008 – 2011</div>
+                    </div>
+                </div>
+
+                <!-- Certificates -->
+                <div class="section">
+                    <h2 class="section-title">Certificates</h2>
+                    <div class="cert-item"><span>EFWA – European Fitness &amp; Wellness Academy</span><span
+                            class="cert-year">2019</span></div>
+                    <div class="cert-item"><span>CACI Synergy</span><span class="cert-year">2019</span></div>
+                    <div class="cert-item"><span>BABTAC</span><span class="cert-year">2020</span></div>
+                    <div class="cert-item"><span>Indiba System</span><span class="cert-year">2022</span></div>
+                    <div class="cert-item"><span>Trusculpt Flex</span><span class="cert-year">2022</span></div>
+                    <div class="cert-item"><span>Velashape III</span><span class="cert-year">2022</span></div>
+                </div>
+
+                <!-- Languages -->
+                <div class="section">
+                    <h2 class="section-title">Languages</h2>
+                    <div class="lang-item">Azerbaijani<span class="pill">Native</span></div>
+                    <div class="lang-item">Turkish<span class="pill">Excellent</span></div>
+                    <div class="lang-item">English<span class="pill">Good</span></div>
+                    <div class="lang-item">Russian<span class="pill">Good</span></div>
+                </div>
+
+            </aside>
+
+            <!-- ── MAIN ─────────────────────────────────────────────────────────── -->
+            <main class="main">
+
+                <!-- Stats -->
+                <div class="stats">
+                    <div class="stat-box" onclick="openModal('experience')"><span class="stat-val">10+</span><span
+                            class="stat-lbl">years
+                            experience</span></div>
+                    <div class="stat-box" onclick="openModal('brands')"><span class="stat-val">5</span><span
+                            class="stat-lbl">luxury brands</span>
+                    </div>
+                    <div class="stat-box" onclick="openModal('languages')"><span class="stat-val">4</span><span
+                            class="stat-lbl">languages spoken</span>
+                    </div>
+                    <div class="stat-box" onclick="openModal('specialisms')"><span class="stat-val">12+</span><span
+                            class="stat-lbl">treatment
+                            specialisms</span></div>
+                </div>
+
+                <!-- MODALS -->
+                <div class="modal-overlay" id="modal-experience" onclick="closeOnOverlay(event)">
+                    <div class="modal">
+                        <button class="modal-close" onclick="closeModal('experience')">×</button>
+                        <h2 class="modal-title">Experience</h2>
+                        <div class="modal-item"><span class="modal-item-name">Spa Supervisor</span><span
+                                class="modal-item-detail">2 yrs · Riyadh</span></div>
+                        <div class="modal-item"><span class="modal-item-name">Senior Spa Therapist</span><span
+                                class="modal-item-detail">2 yrs · Riyadh</span></div>
+                        <div class="modal-item"><span class="modal-item-name">Spa Therapist</span><span
+                                class="modal-item-detail">6 mos · Montenegro</span></div>
+                        <div class="modal-item"><span class="modal-item-name">Spa Therapist</span><span
+                                class="modal-item-detail">6 mos · Kuwait</span></div>
+                        <div class="modal-item"><span class="modal-item-name">Spa Therapist</span><span
+                                class="modal-item-detail">1 yr · Kuwait</span></div>
+                        <div class="modal-item"><span class="modal-item-name">Spa Therapist</span><span
+                                class="modal-item-detail">3 yrs · Azerbaijan</span></div>
+                        <div class="modal-item"><span class="modal-item-name">Therapist · Team Leader</span><span
+                                class="modal-item-detail">3 yrs · Baku</span></div>
+                    </div>
+                </div>
+
+                <div class="modal-overlay" id="modal-brands" onclick="closeOnOverlay(event)">
+                    <div class="modal">
+                        <button class="modal-close" onclick="closeModal('brands')">×</button>
+                        <h2 class="modal-title">Luxury Brands</h2>
+                        <div class="modal-item"><span class="modal-item-name">Core Social Wellness Club</span><span
+                                class="modal-item-detail">Riyadh, KSA</span></div>
+                        <div class="modal-item"><span class="modal-item-name">One &amp; Only Portonovi</span><span
+                                class="modal-item-detail">Montenegro</span></div>
+                        <div class="modal-item"><span class="modal-item-name">Four Seasons Hotels &amp;
+                                Resorts</span><span class="modal-item-detail">Kuwait</span></div>
+                        <div class="modal-item"><span class="modal-item-name">Jumeirah Messilah Beach</span><span
+                                class="modal-item-detail">Kuwait</span></div>
+                        <div class="modal-item"><span class="modal-item-name">Chenot Palace</span><span
+                                class="modal-item-detail">Gabala, Azerbaijan</span></div>
+                        <div class="modal-item"><span class="modal-item-name">Jumeirah Bilgah Beach</span><span
+                                class="modal-item-detail">Baku, Azerbaijan</span></div>
+                    </div>
+                </div>
+
+                <div class="modal-overlay" id="modal-languages" onclick="closeOnOverlay(event)">
+                    <div class="modal">
+                        <button class="modal-close" onclick="closeModal('languages')">×</button>
+                        <h2 class="modal-title">Languages</h2>
+                        <div class="modal-item"><span class="modal-item-name">Azerbaijani</span><span
+                                class="modal-item-detail">Native</span></div>
+                        <div class="modal-item"><span class="modal-item-name">Turkish</span><span
+                                class="modal-item-detail">Excellent</span></div>
+                        <div class="modal-item"><span class="modal-item-name">English</span><span
+                                class="modal-item-detail">Good</span></div>
+                        <div class="modal-item"><span class="modal-item-name">Russian</span><span
+                                class="modal-item-detail">Good</span></div>
+                    </div>
+                </div>
+
+                <div class="modal-overlay" id="modal-specialisms" onclick="closeOnOverlay(event)">
+                    <div class="modal">
+                        <button class="modal-close" onclick="closeModal('specialisms')">×</button>
+                        <h2 class="modal-title">Treatment Specialisms</h2>
+                        <div class="modal-item"><span class="modal-item-name">Indiba System</span></div>
+                        <div class="modal-item"><span class="modal-item-name">Trusculpt Flex</span></div>
+                        <div class="modal-item"><span class="modal-item-name">Velashape III</span></div>
+                        <div class="modal-item"><span class="modal-item-name">CACI Synergy</span></div>
+                        <div class="modal-item"><span class="modal-item-name">Lymphatic Drainage</span></div>
+                        <div class="modal-item"><span class="modal-item-name">Hydrotherapy</span></div>
+                        <div class="modal-item"><span class="modal-item-name">Electro-stimulation</span></div>
+                        <div class="modal-item"><span class="modal-item-name">Acupuncture Point Therapy</span></div>
+                        <div class="modal-item"><span class="modal-item-name">Swedish &amp; Deep Tissue Massage</span>
+                        </div>
+                        <div class="modal-item"><span class="modal-item-name">Chenot Method Detox</span></div>
+                        <div class="modal-item"><span class="modal-item-name">Body Wraps &amp; Scrubs</span></div>
+                        <div class="modal-item"><span class="modal-item-name">Hot Stone Therapy</span></div>
+                    </div>
+                </div>
+
+                <!-- Experience -->
+                <div class="section">
+                    <h2 class="section-title">Professional Experience</h2>
+
+                    <div class="job">
+                        <div class="job-header">
+                            <span class="job-title-text">Spa Supervisor</span>
+                            <span class="date-pill">Aug 2023 – Present</span>
+                        </div>
+                        <div class="job-company">Core Social Wellness Club · Riyadh, Saudi Arabia</div>
+                        <div class="job-bullets">
+                            <div class="job-bullet"><span class="dash">—</span>Oversee daily spa operations ensuring
+                                treatment rooms, facilities and equipment meet the highest hygiene and safety standards
+                                at all times</div>
+                            <div class="job-bullet"><span class="dash">—</span>Plan and manage therapist rotas, allocate
+                                treatments efficiently and ensure seamless service delivery across all shifts</div>
+                            <div class="job-bullet"><span class="dash">—</span>Drive retail product sales targets for
+                                self and the wider team through active upselling and client education</div>
+                            <div class="job-bullet"><span class="dash">—</span>Coordinate equipment maintenance and
+                                safety checks with the facilities team; escalate repairs promptly to minimise downtime
+                            </div>
+                            <div class="job-bullet"><span class="dash">—</span>Monitor and replenish stock levels,
+                                assist with supply ordering and support the spa manager with budget tracking</div>
+                            <div class="job-bullet"><span class="dash">—</span>Act as the primary communication link
+                                between the team and spa manager, reporting guest care issues and any procedural
+                                concerns</div>
+                            <div class="job-bullet"><span class="dash">—</span>Lead on-the-job training sessions
+                                ensuring all therapists follow correct hygiene protocols and treatment procedures</div>
+                        </div>
+                    </div>
+
+                    <div class="job">
+                        <div class="job-header">
+                            <span class="job-title-text">Senior Spa Therapist</span>
+                            <span class="date-pill">Dec 2021 – Aug 2023</span>
+                        </div>
+                        <div class="job-company">Core Social Wellness Club · Riyadh, Saudi Arabia</div>
+                        <div class="job-bullets">
+                            <div class="job-bullet"><span class="dash">—</span>Delivered a full range of advanced body
+                                and technology-based treatments including Indiba, Trusculpt Flex and Velashape III to an
+                                elite clientele</div>
+                            <div class="job-bullet"><span class="dash">—</span>Conducted thorough client consultations
+                                to assess needs, medical history and preferences prior to each session</div>
+                            <div class="job-bullet"><span class="dash">—</span>Mentored junior therapists on treatment
+                                techniques, product knowledge and guest interaction standards</div>
+                            <div class="job-bullet"><span class="dash">—</span>Consistently exceeded individual retail
+                                sales targets; recognised for strong client retention and repeat bookings</div>
+                            <div class="job-bullet"><span class="dash">—</span>Promoted to Spa Supervisor within 2 years
+                                in recognition of performance and leadership qualities</div>
+                        </div>
+                    </div>
+
+                    <div class="job">
+                        <div class="job-header">
+                            <span class="job-title-text">Spa Therapist</span>
+                            <span class="date-pill">May – Oct 2021</span>
+                        </div>
+                        <div class="job-company">One &amp; Only Portonovi · Montenegro</div>
+                        <div class="job-bullets">
+                            <div class="job-bullet"><span class="dash">—</span>Performed a wide range of massage and
+                                body treatments to the exacting standards expected of a Forbes-rated luxury resort</div>
+                            <div class="job-bullet"><span class="dash">—</span>Welcomed international guests, conducted
+                                pre-treatment consultations and tailored each session to individual wellness goals</div>
+                            <div class="job-bullet"><span class="dash">—</span>Supported all areas of spa operation as
+                                directed, including reception cover, treatment room preparation and product display
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="job">
+                        <div class="job-header">
+                            <span class="job-title-text">Spa Therapist</span>
+                            <span class="date-pill">Dec 2020 – May 2021</span>
+                        </div>
+                        <div class="job-company">Four Seasons Hotels &amp; Resorts · Kuwait</div>
+                        <div class="job-bullets">
+                            <div class="job-bullet"><span class="dash">—</span>Delivered signature and bespoke
+                                treatments maintaining the Four Seasons service excellence standards throughout every
+                                guest interaction</div>
+                            <div class="job-bullet"><span class="dash">—</span>Evaluated clients' soft tissue condition,
+                                joint quality, muscle strength and range of motion to tailor treatment plans accordingly
+                            </div>
+                            <div class="job-bullet"><span class="dash">—</span>Upheld strict guest confidentiality and
+                                data handling protocols in line with brand policy</div>
+                            <div class="job-bullet"><span class="dash">—</span>Collaborated with the wider spa team to
+                                ensure a seamless and luxurious guest journey from arrival to departure</div>
+                        </div>
+                    </div>
+
+                    <div class="job">
+                        <div class="job-header">
+                            <span class="job-title-text">Spa Therapist</span>
+                            <span class="date-pill">Sep 2019 – Nov 2020</span>
+                        </div>
+                        <div class="job-company">Jumeirah Messilah Beach Hotel &amp; Spa · Kuwait</div>
+                        <div class="job-bullets">
+                            <div class="job-bullet"><span class="dash">—</span>Conducted in-depth guest consultations,
+                                enquiring about medical conditions and allergies before commencing any treatment</div>
+                            <div class="job-bullet"><span class="dash">—</span>Designed and carried out personalised
+                                therapy sessions based on each client's schedule, preferences and specific concerns
+                            </div>
+                            <div class="job-bullet"><span class="dash">—</span>Educated guests on the benefits of
+                                available treatments, products and home-care routines to encourage retail sales</div>
+                            <div class="job-bullet"><span class="dash">—</span>Maintained accurate inventory records and
+                                reported stock shortages to management to ensure uninterrupted service delivery</div>
+                            <div class="job-bullet"><span class="dash">—</span>Resolved guest complaints promptly and
+                                professionally, reporting all incidents to the supervisor in line with hotel procedure
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="job">
+                        <div class="job-header">
+                            <span class="job-title-text">Spa Therapist</span>
+                            <span class="date-pill">May 2016 – Aug 2019</span>
+                        </div>
+                        <div class="job-company">Chenot Palace Health Wellness Hotel · Gabala, Azerbaijan</div>
+                        <div class="job-bullets">
+                            <div class="job-bullet"><span class="dash">—</span>Delivered the renowned Chenot Method — a
+                                unique programme combining Chinese medicine, advanced diagnostics and targeted detox
+                                treatments</div>
+                            <div class="job-bullet"><span class="dash">—</span>Screened guests for medical conditions,
+                                allergies and contraindications prior to each session, adhering to strict clinical
+                                protocols</div>
+                            <div class="job-bullet"><span class="dash">—</span>Applied specialist techniques including
+                                electro-stimulation, acupuncture point therapy, hydrotherapy and lymphatic drainage
+                            </div>
+                            <div class="job-bullet"><span class="dash">—</span>Explained treatment procedures, oils and
+                                product ingredients clearly to guests, building trust and long-term client relationships
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="job">
+                        <div class="job-header">
+                            <span class="job-title-text">Spa Therapist · Team Leader · Attendant</span>
+                            <span class="date-pill">Jul 2013 – Apr 2016</span>
+                        </div>
+                        <div class="job-company">Jumeirah Bilgah Beach Hotel · Baku, Azerbaijan</div>
+                        <div class="job-bullets">
+                            <div class="job-bullet"><span class="dash">—</span>Progressed through three roles within the
+                                spa department, gaining a comprehensive understanding of all operational areas</div>
+                            <div class="job-bullet"><span class="dash">—</span>Provided professional massage and body
+                                treatments using safe, effective and evidence-based techniques</div>
+                            <div class="job-bullet"><span class="dash">—</span>As Team Leader, coordinated daily task
+                                allocation among attendants and ensured facility cleanliness and readiness at all times
+                            </div>
+                            <div class="job-bullet"><span class="dash">—</span>Maintained guest supplies, assisted with
+                                stock ordering and supported the smooth running of the spa's back-of-house operations
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <!-- /experience section -->
+
+                <!-- Reference -->
+                <!-- reference hidden -->
+            </main>
+        </div>
+    </div>
+    <script>
+        function openModal(id) {
+            document.getElementById('modal-' + id).classList.add('active');
+        }
+        function closeModal(id) {
+            document.getElementById('modal-' + id).classList.remove('active');
+        }
+        function closeOnOverlay(e) {
+            if (e.target === e.currentTarget) e.currentTarget.classList.remove('active');
+        }
+        document.addEventListener('keydown', function (e) {
+            if (e.key === 'Escape') {
+                document.querySelectorAll('.modal-overlay.active').forEach(function (m) {
+                    m.classList.remove('active');
+                });
+            }
+        });
+    </script>
+
+</body>
+
+</html>
